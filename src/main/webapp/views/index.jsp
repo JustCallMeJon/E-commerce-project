@@ -35,7 +35,7 @@
         </button>
 		
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <h4>Welcome ${ username } </h4>
+        <h4>Welcome, ${ username } </h4>
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 <li class="nav-item active">
@@ -92,6 +92,7 @@
 
       <div class="row">
       <c:forEach var="product" items="${products}">
+<%--          TODO: Add The Multiple product add here AFTER getting the Cart functionality added.--%>
         <div class="col-md-3">
           <div class="card mb-4">
             <img class="card-img-top" src="${product.image}" alt="Product 1">
