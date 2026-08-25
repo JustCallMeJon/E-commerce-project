@@ -37,7 +37,7 @@
 				<ul class="navbar-nav mr-auto"></ul>
 				<ul class="navbar-nav">
 					<li class="nav-item active"><a class="nav-link"
-						href="/adminhome" >Home Page</a></li>
+						href="/admin/Dashboard" >Home Page</a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="/logout" >Logout</a></li>
 
@@ -102,7 +102,8 @@
 					</div>
 					<p>Product Image</p>
 					<div class="form-group">
-											<label for="Image">Image Link</label>
+											<label for="Image">Image Link.</label>
+											<label for="Image">NOTE: Needs to be the IMAGE Link.</label>
                       						<input type="text" class="form-control border border-warning" required name="productImage" placeholder="Enter Short Image Link">
 
 

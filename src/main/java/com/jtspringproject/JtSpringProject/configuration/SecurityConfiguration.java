@@ -35,7 +35,7 @@ public class SecurityConfiguration {
 							.loginPage("/admin/login")
 							.loginProcessingUrl("/admin/loginvalidate")
 							.successHandler((request, response, authentication) -> {
-								response.sendRedirect("/admin/");
+								response.sendRedirect("/admin/Dashboard");
 							})
 							.failureHandler((request, response, exception) -> {
 								response.sendRedirect("/admin/login?error=true");
