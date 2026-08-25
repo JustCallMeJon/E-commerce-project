@@ -68,10 +68,12 @@
                 <div class="form-group">
 
                     <label for="category">Select Category</label>
-                    <select class="form-control border border-success" name="categoryid" readonly>
-                        <option selected>Select a Category</option>
+                    <select class="form-control border border-success" name="categoryid">
                         <c:forEach var="category" items="${categories}">
-                            <option value="${category.id}">${category.name}</option>
+                            <option value="${category.id}"
+                            ${category.id == product.category.id ? 'selected' : ''}>
+                                ${category.name}
+                            </option>
                         </c:forEach>
                     </select>
                 </div>
