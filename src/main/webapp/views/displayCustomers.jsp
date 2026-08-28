@@ -70,6 +70,14 @@
 					    ${customer.address}
 						
 				    </td>
+					<td>
+						<c:if test="${customer.role != 'ROLE_ADMIN'}">
+						<form action="user/delete" method="post">
+							<input type="hidden" name="id" value="${customer.id}">
+							<button type="submit">Delete</button>
+						</form>
+						</c:if>
+					</td>
 					</tr>
                 </c:forEach>
 

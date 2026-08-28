@@ -192,6 +192,13 @@ public class AdminController {
 		return "redirect:index";
 	}
 
+	@PostMapping("user/delete")
+	public String deleteUserProfile(@RequestParam("userid") int userid) {
+		userService.deleteUser(userid);
+		return "redirect:index";
+	}
+
+
 	private void refreshAuthenticatedPrincipal(String username) {
 		Authentication currentAuthentication = SecurityContextHolder.getContext().getAuthentication();
 		Authentication newAuthentication = new UsernamePasswordAuthenticationToken(

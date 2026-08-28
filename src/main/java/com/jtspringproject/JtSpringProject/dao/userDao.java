@@ -57,4 +57,15 @@ public class userDao {
 	public User getUserById(int id) {
 		return this.sessionFactory.getCurrentSession().get(User.class, id);
 	}
+
+	public boolean deleteUser(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		User user = getUserById(id);
+
+		if (user != null) {
+			session.delete(user);
+			return true;
+		}
+		return false;
+	}
 }
