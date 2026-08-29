@@ -67,4 +67,13 @@ public class cartProductDao {
                 .setParameter("product_id", product_id)
                 .uniqueResult();
     }
+    @Transactional
+    public List<CartProduct> getCartProductsByCartId(int cartId) {
+        return sessionFactory.getCurrentSession()
+                .createQuery(
+                        "from CartProduct where cart.id = :cartId",
+                        CartProduct.class)
+                .setParameter("cartId", cartId)
+                .getResultList();
+    }
 }
