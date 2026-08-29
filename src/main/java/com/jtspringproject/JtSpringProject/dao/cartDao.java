@@ -35,4 +35,14 @@ public class cartDao {
     public void deleteCart(Cart cart) {
         this.sessionFactory.getCurrentSession().delete(cart);
     }
+
+    @Transactional
+    public Cart getCartByUserId(int userId) {
+        return this.sessionFactory.getCurrentSession()
+                .createQuery(
+                        "from CART where customer.id = :userId",
+                        Cart.class)
+                .setParameter("userId", userId)
+                .uniqueResult();
+    }
 }

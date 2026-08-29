@@ -26,7 +26,7 @@ public class cartProductDao {
 
     @Transactional
     public List<CartProduct> getCartProducts() {
-        return this.sessionFactory.getCurrentSession().createQuery("from CART_PRODUCT", CartProduct.class).list();
+        return this.sessionFactory.getCurrentSession().createQuery("from CartProduct", CartProduct.class).list();
     }
 
     @Transactional
@@ -56,5 +56,15 @@ public class cartProductDao {
     @Transactional
     public void deleteCartProduct(CartProduct cartProduct) {
         this.sessionFactory.getCurrentSession().delete(cartProduct);
+    }
+
+    @Transactional
+    public CartProduct getCartProduct(Integer cart_id, Integer product_id) {
+        return (CartProduct) this.sessionFactory.getCurrentSession()
+                .createQuery("from CartProduct where cart.id = :cart_id and product.id = :product_id",
+                        CartProduct.class)
+                .setParameter("cart_id", cart_id)
+                .setParameter("product_id", product_id)
+                .uniqueResult();
     }
 }

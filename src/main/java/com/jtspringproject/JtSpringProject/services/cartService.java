@@ -32,4 +32,10 @@ public class cartService {
     public void deleteCart(Cart cart) {
         cartDao.deleteCart(cart);
     }
+
+    public Cart getCartByUserId(int userId) {
+        return cartDao.getCartByUserId(userId);
+    }
+    
+
 }
