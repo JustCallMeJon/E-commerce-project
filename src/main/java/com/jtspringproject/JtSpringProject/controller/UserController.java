@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jtspringproject.JtSpringProject.services.userService;
 import com.jtspringproject.JtSpringProject.services.productService;
+import com.jtspringproject.JtSpringProject.services.categoryService;
 
 @Controller
 public class UserController {
@@ -29,14 +30,17 @@ public class UserController {
     private final userService userService;
     private final productService productService;
     private final cartService cartService;
+    private final categoryService categoryService;
 
     @Autowired
     public UserController(userService userService,
                           productService productService,
-                          cartService cartService) {
+                          cartService cartService,
+                          categoryService categoryService) {
         this.userService = userService;
         this.productService = productService;
         this.cartService = cartService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/register")
@@ -73,7 +77,7 @@ public class UserController {
 
         List<Product> products;
 
-        if (search.isBlank()) {
+        if (search.isBlank() && category.isBlank()) {
             products = this.productService.getProducts();
         } else {
             products = this.productService.searchProducts(search, category);
@@ -86,6 +90,8 @@ public class UserController {
         }
 
         mView.addObject("search", search);
+        mView.addObject("category", category);
+        mView.addObject("categories", categoryService.getCategories());
 
         return mView;
     }

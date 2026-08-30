@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.jtspringproject.JtSpringProject.dao.categoryDao;
 import com.jtspringproject.JtSpringProject.models.Category;
+import com.jtspringproject.JtSpringProject.services.categoryService;
 
 @Service
 public class categoryService {
