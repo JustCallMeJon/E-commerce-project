@@ -178,38 +178,45 @@
                 <div class="col-md-3">
                     <div class="card mb-4">
                         <img class="card-img-top" src="${product.image}" alt="Product 1">
+
                         <div class="card-body">
                             <b><h4 class="card-title">${product.name}</h4></b>
                             <h5 class="card-text">Category: ${product.category.name}</h5>
                             <h5 class="card-text">Price: $${product.price}</h5>
                             <p class="card-text">Description: ${product.description}</p>
 
+                            <form action="${pageContext.request.contextPath}/products/addtocart" method="get">
 
-                            <div class="quantity-controls">
-                                <button type="button"
-                                        class="btn btn-warning"
-                                        onclick="decreaseQuantity(this)">-
-                                </button>
+                                <input type="hidden" name="id" value="${product.id}">
 
-                                <input type="number"
-                                       value="1"
-                                       min="1"
-                                       step="1"
-                                       class="form-control quantity-input">
+                                <div class="quantity-controls">
+                                    <button type="button"
+                                            class="btn btn-warning"
+                                            onclick="decreaseQuantity(this)">
+                                        -
+                                    </button>
 
-                                <button type="button"
-                                        class="btn btn-warning"
-                                        onclick="increaseQuantity(this)">+
-                                </button>
-                            </div>
+                                    <input type="number"
+                                           name="quantity"
+                                           value="1"
+                                           min="1"
+                                           step="1"
+                                           class="form-control quantity-input">
 
-                            <div class="add-to-cart-container">
-                                <a href="${pageContext.request.contextPath}/products/addtocart?id=${product.id}"
-                                   class="btn add-to-cart"
-                                   onclick="addToCart(this)">
-                                    Add To Cart
-                                </a>
-                            </div>
+                                    <button type="button"
+                                            class="btn btn-warning"
+                                            onclick="increaseQuantity(this)">
+                                        +
+                                    </button>
+                                </div>
+
+                                <div class="add-to-cart-container">
+                                    <button type="submit" class="btn add-to-cart">
+                                        Add To Cart
+                                    </button>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
                 </div>

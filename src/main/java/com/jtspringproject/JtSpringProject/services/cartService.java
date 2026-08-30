@@ -47,16 +47,16 @@ public class cartService {
     }
 
 
-    public void addProductToCart(Cart cart, Product product) {
+    public void addProductToCart(Cart cart, Product product, int quantity) {
         CartProduct cartProduct =
                 cartProductDao.getCartProduct(cart.getId(), product.getId());
 
         if (cartProduct != null) {
-            cartProduct.setQuantity(cartProduct.getQuantity() + 1);
+            cartProduct.setQuantity(cartProduct.getQuantity() + quantity);
             cartProductDao.updateCartProduct(cartProduct);
         } else {
             CartProduct newCartProduct = new CartProduct(cart, product);
-            newCartProduct.setQuantity(1);
+            newCartProduct.setQuantity(quantity);
             cartProductDao.addCartProduct(newCartProduct);
         }
     }

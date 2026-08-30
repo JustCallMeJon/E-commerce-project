@@ -124,7 +124,8 @@ public class UserController {
     }
 
     @GetMapping("products/addtocart")
-    public String addToCart(@RequestParam("id") int productId) {
+    public String addToCart(@RequestParam("id") int productId,
+                            @RequestParam("quantity") int quantity) {
 
         String username = SecurityContextHolder.getContext()
                 .getAuthentication()
@@ -136,7 +137,7 @@ public class UserController {
 
         Product product = productService.getProduct(productId);
 
-        cartService.addProductToCart(cart, product);
+        cartService.addProductToCart(cart, product, quantity);
 
         return "redirect:/cart";
     }
