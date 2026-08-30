@@ -126,14 +126,13 @@ public class UserController {
     @GetMapping("products/addtocart")
     public String addToCart(@RequestParam("id") int productId) {
 
-        String username =
-                SecurityContextHolder.getContext()
-                        .getAuthentication()
-                        .getName();
+        String username = SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getName();
 
         User user = userService.getUserByUsername(username);
 
-        Cart cart = cartService.getCartByUserId(user.getId());
+        Cart cart = cartService.getOrCreateCart(user);
 
         Product product = productService.getProduct(productId);
 
@@ -152,7 +151,7 @@ public class UserController {
 
         User user = userService.getUserByUsername(username);
 
-        Cart cart = cartService.getCartByUserId(user.getId());
+        Cart cart = cartService.getOrCreateCart(user);
 
         List<CartProduct> cartProducts =
                 cartService.getCartProductsByCartId(cart.getId());

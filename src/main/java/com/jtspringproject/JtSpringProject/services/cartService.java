@@ -8,6 +8,7 @@ import com.jtspringproject.JtSpringProject.models.Cart;
 
 import com.jtspringproject.JtSpringProject.models.CartProduct;
 import com.jtspringproject.JtSpringProject.models.Product;
+import com.jtspringproject.JtSpringProject.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +59,18 @@ public class cartService {
             newCartProduct.setQuantity(1);
             cartProductDao.addCartProduct(newCartProduct);
         }
+    }
+
+    public Cart getOrCreateCart(User user) {
+        Cart cart = cartDao.getCartByUserId(user.getId());
+
+        if (cart == null) {
+            cart = new Cart();
+            cart.setCustomer(user);
+            cart = cartDao.addCart(cart);
+        }
+
+        return cart;
     }
 
 }

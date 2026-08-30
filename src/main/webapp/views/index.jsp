@@ -39,7 +39,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/}" href="#">CART</a>
+                    <a class="nav-link" th:href="@{/}" href="${pageContext.request.contextPath}/cart">CART</a>
                 </li>
                  <li class="nav-item active">
                     <a class="nav-link" href="profileDisplay" >Profile</a>
@@ -101,7 +101,7 @@
               <h5 class="card-text">Category: ${product.category.name}</h5>
               <h5 class="card-text">Price: ${product.price}</h5>
               <p class="card-text">Description: ${product.description}</p>
-              <a href="#" class="btn btn-primary">Add to Cart</a>
+              <a href="${pageContext.request.contextPath}/products/addtocart" class="btn btn-primary">Add to Cart</a>
             </div>
           </div>
         </div> </c:forEach>
