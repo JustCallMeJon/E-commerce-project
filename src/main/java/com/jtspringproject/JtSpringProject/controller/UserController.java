@@ -138,7 +138,7 @@ public class UserController {
 
         cartService.addProductToCart(cart, product);
 
-        return "redirect:/products";
+        return "redirect:/cart";
     }
 
     @GetMapping("cart")
