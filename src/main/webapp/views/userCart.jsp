@@ -14,6 +14,26 @@
           crossorigin="anonymous">
 
     <title>Your Cart</title>
+    <style>
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .quantity-input {
+            width: 55px !important;
+            height: 38px;
+            padding: 4px;
+            text-align: center;
+        }
+        .quantity-input::-webkit-inner-spin-button,
+        .quantity-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -58,13 +78,13 @@
                 <div class="card-body">
 
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle">
+                        <table class="table table-hover align-middle text-center">
 
                             <thead class="thead-dark">
                             <tr>
                                 <th>Product</th>
                                 <th>Preview</th>
-                                <th>Price</th>
+                                <th>Price Per</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
                             </tr>
@@ -97,7 +117,60 @@
                                     </td>
 
                                     <td>
-                                            ${cartProduct.quantity}
+                                        <div class="quantity-controls">
+
+                                            <form action="${pageContext.request.contextPath}/cart/update"
+                                                  method="get">
+
+                                                <input type="hidden"
+                                                       name="productId"
+                                                       value="${cartProduct.product.id}">
+
+                                                <input type="hidden"
+                                                       name="quantity"
+                                                       value="${cartProduct.quantity - 1}">
+
+                                                <button type="submit"
+                                                        class="btn btn-primary">
+                                                    -
+                                                </button>
+
+                                            </form>
+
+                                            <form action="${pageContext.request.contextPath}/cart/update"
+                                                  method="get">
+
+                                                <input type="hidden"
+                                                       name="productId"
+                                                       value="${cartProduct.product.id}">
+
+                                                <input type="number"
+                                                       name="quantity"
+                                                       value="${cartProduct.quantity}"
+                                                       min="0"
+                                                       class="form-control quantity-input">
+
+                                            </form>
+
+                                            <form action="${pageContext.request.contextPath}/cart/update"
+                                                  method="get">
+
+                                                <input type="hidden"
+                                                       name="productId"
+                                                       value="${cartProduct.product.id}">
+
+                                                <input type="hidden"
+                                                       name="quantity"
+                                                       value="${cartProduct.quantity + 1}">
+
+                                                <button type="submit"
+                                                        class="btn btn-primary">
+                                                    +
+                                                </button>
+
+                                            </form>
+
+                                        </div>
                                     </td>
 
                                     <td>

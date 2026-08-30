@@ -159,6 +159,30 @@ public class UserController {
         return "redirect:/?purchase=true";
     }
 
+    @GetMapping("/cart/update")
+    public String updateCartQuantity(
+            @RequestParam("productId") int productId,
+            @RequestParam("quantity") int quantity) {
+
+        String username = SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getName();
+
+        User user = userService.getUserByUsername(username);
+
+        Cart cart = cartService.getCartByUserId(user.getId());
+
+        if (cart != null) {
+            cartService.updateCartProductQuantity(
+                    cart.getId(),
+                    productId,
+                    quantity
+            );
+        }
+
+        return "redirect:/cart";
+    }
+
 
     @GetMapping("cart")
     public ModelAndView getCart() {

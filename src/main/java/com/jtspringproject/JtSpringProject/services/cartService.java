@@ -61,6 +61,21 @@ public class cartService {
         }
     }
 
+    public void updateCartProductQuantity(int cartId, int productId, int quantity) {
+        CartProduct cartProduct = cartProductDao.getCartProduct(cartId, productId);
+
+        if (cartProduct == null) {
+            return;
+        }
+
+        if (quantity <= 0) {
+            cartProductDao.deleteCartProduct(cartProduct);
+        } else {
+            cartProduct.setQuantity(quantity);
+            cartProductDao.updateCartProduct(cartProduct);
+        }
+    }
+
     public Cart getOrCreateCart(User user) {
         Cart cart = cartDao.getCartByUserId(user.getId());
 
