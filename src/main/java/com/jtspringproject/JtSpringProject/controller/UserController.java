@@ -59,17 +59,34 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public ModelAndView indexPage() {
+    public ModelAndView indexPage(
+            @RequestParam(required = false, defaultValue = "") String search,
+            @RequestParam(required = false, defaultValue = "") String category) {
+
         ModelAndView mView = new ModelAndView("index");
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        String username = SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getName();
+
         mView.addObject("username", username);
-        List<Product> products = this.productService.getProducts();
+
+        List<Product> products;
+
+        if (search.isBlank()) {
+            products = this.productService.getProducts();
+        } else {
+            products = this.productService.searchProducts(search, category);
+        }
 
         if (products.isEmpty()) {
             mView.addObject("msg", "No products are available");
         } else {
             mView.addObject("products", products);
         }
+
+        mView.addObject("search", search);
+
         return mView;
     }
 

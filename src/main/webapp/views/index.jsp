@@ -172,6 +172,39 @@
     <div class="container">
         <h1>Welcome to Perishable Shop</h1>
 
+        <form action="${pageContext.request.contextPath}/" method="get" class="mb-4">
+            <div class="form-row">
+
+                <div class="col-md-8">
+                    <input type="text"
+                           name="search"
+                           value="${search}"
+                           class="form-control"
+                           placeholder="Search products...">
+                </div>
+
+                <div class="col-md-3">
+                    <select name="category" class="form-control">
+                        <option value="">All Categories</option>
+
+                        <c:forEach var="categoryOption" items="${categories}">
+                            <option value="${categoryOption.name}"
+                                ${category == categoryOption.name ? 'selected' : ''}>
+                                    ${categoryOption.name}
+                            </option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary">
+                        Search
+                    </button>
+                </div>
+
+            </div>
+        </form>
+
 
         <div class="row">
             <c:forEach var="product" items="${products}">

@@ -35,4 +35,8 @@ public class productService {
 	public boolean deleteProduct(int id) {
 		return this.productDao.deleteProduct(id);
 	}
+
+	public List<Product> searchProducts(String search, String category) {
+		return this.productDao.searchProducts(search, category);
+	}
 }

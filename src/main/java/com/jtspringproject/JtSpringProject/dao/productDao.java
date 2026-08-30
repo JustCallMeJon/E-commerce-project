@@ -51,4 +51,31 @@ public class productDao {
 		return false;
 	}
 
+	@Transactional
+	public List<Product> searchProducts(String search, String category) {
+
+		String hql = "from PRODUCT p where 1=1";
+
+		if (search != null && !search.isBlank()) {
+			hql += " and lower(p.name) like :search";
+		}
+
+		if (category != null && !category.isBlank()) {
+			hql += " and lower(p.category.name) = :category";
+		}
+
+		var query = this.sessionFactory.getCurrentSession()
+				.createQuery(hql, Product.class);
+
+		if (search != null && !search.isBlank()) {
+			query.setParameter("search", "%" + search.toLowerCase() + "%");
+		}
+
+		if (category != null && !category.isBlank()) {
+			query.setParameter("category", category.toLowerCase());
+		}
+
+		return query.list();
+	}
+
 }
