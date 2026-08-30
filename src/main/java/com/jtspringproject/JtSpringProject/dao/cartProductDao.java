@@ -58,6 +58,8 @@ public class cartProductDao {
         this.sessionFactory.getCurrentSession().delete(cartProduct);
     }
 
+    
+
     @Transactional
     public CartProduct getCartProduct(Integer cart_id, Integer product_id) {
         return (CartProduct) this.sessionFactory.getCurrentSession()

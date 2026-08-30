@@ -140,6 +140,24 @@ public class UserController {
 
         return "redirect:/cart";
     }
+    @PostMapping("/cart/purchase")
+    public String purchaseCart() {
+
+        String username =
+                SecurityContextHolder.getContext()
+                        .getAuthentication()
+                        .getName();
+
+        User user = userService.getUserByUsername(username);
+
+        Cart cart = cartService.getCartByUserId(user.getId());
+
+        if (cart != null) {
+            cartService.deleteCart(cart);
+        }
+
+        return "redirect:/?purchase=true";
+    }
 
     @GetMapping("cart")
     public ModelAndView getCart() {
@@ -161,6 +179,8 @@ public class UserController {
 
         return mav;
     }
+
+
 
     @PostMapping("/updateuser")
     public String updateUserProfile(@RequestParam("userid") int userid,
