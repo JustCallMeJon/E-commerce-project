@@ -96,8 +96,8 @@
                 <td>
 
 
-                    <form action="${pageContext.request.contextPath}products/addtocart" method="get">
-                        <input type="hidden" name="id" value="${product.id}">
+                    <form action="${pageContext.request.contextPath}/products/addtocart" method="get">
+                        <input type="hidden" name="id" value="${product.product_id}">
                         <input type="submit" value="Add To Cart" class="btn btn-warning">
                     </form>
                 </td>
