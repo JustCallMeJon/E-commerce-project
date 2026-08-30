@@ -81,6 +81,11 @@
   </style>
 </head>
 <body class="bg-light">
+<c:if test="${param.purchase == 'true'}">
+    <script>
+        alert("Unfortunately, we have yet to finish this function. However, your products have been removed!");
+    </script>
+</c:if>
   <header>
 
   </header>

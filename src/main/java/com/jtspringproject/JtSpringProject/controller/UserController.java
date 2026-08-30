@@ -143,21 +143,21 @@ public class UserController {
     @PostMapping("/cart/purchase")
     public String purchaseCart() {
 
-        String username =
-                SecurityContextHolder.getContext()
-                        .getAuthentication()
-                        .getName();
+        String username = SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getName();
 
         User user = userService.getUserByUsername(username);
 
         Cart cart = cartService.getCartByUserId(user.getId());
 
         if (cart != null) {
-            cartService.deleteCart(cart);
+            cartService.clearCart(cart);
         }
 
         return "redirect:/?purchase=true";
     }
+
 
     @GetMapping("cart")
     public ModelAndView getCart() {

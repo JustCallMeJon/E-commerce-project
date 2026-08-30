@@ -73,4 +73,8 @@ public class cartService {
         return cart;
     }
 
+    public void clearCart(Cart cart) {
+        cartProductDao.deleteCartProductsByCartId(cart.getId());
+    }
+
 }

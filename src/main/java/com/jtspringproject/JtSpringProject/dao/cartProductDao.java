@@ -58,7 +58,7 @@ public class cartProductDao {
         this.sessionFactory.getCurrentSession().delete(cartProduct);
     }
 
-    
+
 
     @Transactional
     public CartProduct getCartProduct(Integer cart_id, Integer product_id) {
@@ -77,5 +77,13 @@ public class cartProductDao {
                         CartProduct.class)
                 .setParameter("cartId", cartId)
                 .getResultList();
+    }
+    @Transactional
+    public void deleteCartProductsByCartId(int cartId) {
+        List<CartProduct> cartProducts = getCartProductsByCartId(cartId);
+
+        for (CartProduct cartProduct : cartProducts) {
+            sessionFactory.getCurrentSession().delete(cartProduct);
+        }
     }
 }
